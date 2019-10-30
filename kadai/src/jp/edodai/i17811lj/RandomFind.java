@@ -1,5 +1,6 @@
 package jp.edodai.i17811lj;
 
+import java.lang.reflect.Array;
 import java.util.LinkedHashMap;
 
 public class RandomFind {
@@ -17,15 +18,15 @@ public class RandomFind {
                 new Student("輪島", 22, 70, 75)
         };
         Student student = find(zemi);
-        System.out.println("---------英語の順位---------------");
-        for (int i=0;i<zemi.length;i++){
-            englishBubble(zemi)[i].showInfo();
-        }
+        LinkedHashMap<String, Integer> ranking = ranking(student, zemi);
         System.out.println("---------情報の順位---------------");
         for (int i=0;i<zemi.length;i++){
             infoBubble(zemi)[i].showInfo();
         }
-        LinkedHashMap<String, Integer> ranking = ranking(student, zemi);
+        System.out.println("---------英語の順位---------------");
+        for (int i=0;i<zemi.length;i++){
+            englishBubble(zemi)[i].showInfo();
+        }
         System.out.println("情報の順位"+(((int)ranking.get("情報の順位"))+1));
         System.out.println("英語の順位"+(((int)ranking.get("英語の順位"))+1));
 
@@ -43,21 +44,21 @@ public class RandomFind {
         students=englishBubble(students);
         for (int i=0;i<students.length;i++){
             if (student.equals(students[i])){
-
                 ranks.put("英語の順位",i);
+                break;
             }
         }
         students=infoBubble(students);
         for (int i=0;i<students.length;i++){
             if (student.equals(students[i])){
                 ranks.put("情報の順位",i);
+                break;
             }
         }
         return ranks;
 
     }
     static Student[] englishBubble(Student[] students){
-        Integer []rank=null;
         for (int i=0;i<students.length;i++){
             for (int j=0;j<students.length-i-1;j++){
                 if (students[j].english<students[j+1].english){
@@ -70,7 +71,6 @@ public class RandomFind {
         return students;
     }
     static Student[] infoBubble(Student[] students){
-        Integer []rank=null;
         for (int i=0;i<students.length;i++){
             for (int j=0;j<students.length-i-1;j++){
                 if (students[j].info<students[j+1].info){
@@ -81,5 +81,9 @@ public class RandomFind {
             }
         }
         return students;
+    }
+    public  <T> T bubble(T t){
+
+        return t;
     }
 }
