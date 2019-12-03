@@ -4,27 +4,33 @@ import java.util.Scanner;
 
 public class Keisan2 {
     public static void main(String[] args) {
-//        System.out.println(jissuu());
-        System.out.println(seisuu());
-    }
-    static String jissuu(){
-        try {
-            Nyuryoku nyuryoku=new Nyuryoku();
-            nyuryoku.setJ1();
-            nyuryoku.setJ2();
-            return "j1+j2="+(nyuryoku.getJ1()+nyuryoku.getJ2())+" j1-j2="+(nyuryoku.getJ1()-nyuryoku.getJ2())+" j1*j2="+(nyuryoku.getJ1()*nyuryoku.getJ2())+" j1/j2="+(nyuryoku.getJ1()/nyuryoku.getJ2());
-        } catch (Exception e) {
-            return "数字を入力してください";
+        int x=0;
+        double y=0;
+        boolean flag=true;
+        while (flag) {
+            try {
+                x=seisuu();
+                y=jisuu();
+                double add=x+y;
+                double min=x-y;
+                double sa=x*y;
+                double de=x/y;
+                if (y==0){
+                    continue;
+                }
+                System.out.println("x+y="+(add)+" x-y="+(min)
+                        +" x*y="+(sa)+" x/y="+(de));
+            }catch (Exception e){
+                System.out.println("数字型のデータを入力してください");
+                System.out.println("yは0にしてはならない");
+                flag=false;
+            }
         }
     }
-    static String seisuu(){
-        try {
-            Nyuryoku nyuryoku=new Nyuryoku();
-            nyuryoku.setS1();
-            nyuryoku.setS2();
-            return "S1+S2="+(nyuryoku.getS1()+nyuryoku.getS2())+" S1-S2="+(nyuryoku.getS1()-nyuryoku.getS2())+" S1*S2="+(nyuryoku.getS1()*nyuryoku.getS2())+" S1/S2="+(nyuryoku.getS1()/nyuryoku.getS2());
-        } catch (Exception e) {
-            return "数字を入力してください";
-        }
+    static int seisuu(){
+        return Nyuryoku.seisuu();
+    }
+    static double jisuu(){
+        return Nyuryoku.jisuu();
     }
 }
